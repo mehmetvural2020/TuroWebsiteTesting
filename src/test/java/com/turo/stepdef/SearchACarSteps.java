@@ -1,28 +1,55 @@
 package com.turo.stepdef;
 
+import com.turo.pages.SearchACar;
+import com.turo.utils.ConfigurationReader;
+import com.turo.utils.MyDriver;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.turo.pages.Base.waitSomeTime;
+
 public class SearchACarSteps {
-    Logger logger = LoggerFactory.getLogger(MainPageSteps.class);
+    Logger logger = LoggerFactory.getLogger(SearchACarSteps.class);
+    SearchACar searchACar = new SearchACar();
 
 
-    @Then("User enter <{string}> in Where text box")
-    public void userEnterInWhereTextBox(String arg0) {
+    @Given("user is on landing page to search")
+    public void userIsInLandingPageToSearch() {
+        MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
+
+        MyDriver.get().manage().deleteAllCookies();
+//        MyDriver.get().navigate().refresh();
+        waitSomeTime(5L);
+        String expected = "Turo | The world's largest car sharing marketplace";
+        String actual = MyDriver.get().getTitle();
+        Assert.assertEquals(expected,actual);
+
+        logger.info("Turo.com website title is {}", actual);
     }
 
-    @Then("User select <{string}> and <{string}> under From")
-    public void userSelectAndUnderFrom(String arg0, String arg1) {
+
+    @Then("User enter {string} in Where text box")
+    public void userEnterInWhereTextBox(String location) {
+        searchACar.enterLocation(location);
     }
 
-    @Then("User select <{string}> and <{string}> under Until")
-    public void userSelectAndUnderUntil(String arg0, String arg1) {
+    @Then("User select {string} and {string} under From")
+    public void userSelectAndUnderFrom(String date, String time) {
+        searchACar.startDateAndTime(date, time);
+    }
+
+    @Then("User select {string} and {string} under Until")
+    public void userSelectAndUnderUntil(String date, String time) {
+        searchACar.endDateAndTime(date, time);
     }
 
     @Then("User clicks Search button")
     public void userClicksSearchButton() {
+        searchACar.clickSearchButton();
     }
 
     @And("User clicks on Sort By menu and select an option then clicks on apply")
@@ -45,8 +72,8 @@ public class SearchACarSteps {
     public void userClicksOnMoreFiltersMenuAndSelectAllStarHost() {
     }
 
-    @And("select <Vehicle_types> and clicks on upper arrow")
-    public void selectVehicle_typesAndClicksOnUpperArrow() {
+    @And("select {string} and clicks on upper arrow")
+    public void selectAndClicksOnUpperArrow(String value) {
     }
 
     @And("adjust the Vehicle years range and select the Transmission")
@@ -72,4 +99,5 @@ public class SearchACarSteps {
     @And("User clicks on Continue button")
     public void userClicksOnContinueButton() {
     }
+
 }
