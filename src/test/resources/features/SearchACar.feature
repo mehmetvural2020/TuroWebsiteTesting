@@ -19,6 +19,12 @@ Feature: Verifying the Search
     And Verify that Pickup & return location is present
     Then User selects Pickup & return location
     And User clicks on Continue button
+#    0 2 10 2021 2
+#    0 02 10 2021 2
+#  2021 0 10 20212 09
+#  2021 0 25 2021 2
+
+
     Examples:
-      | location    | dateFrom  | timeFrom | dateUntil | timeUntil |  Vehicle_makes |
-      | "New York"  | "02102021"| "1000AM" | "02152021"| "1000AM"  |   "BMW"         |
+      | location        | dateFrom | timeFrom | dateUntil | timeUntil |  Vehicle_makes |
+      | Los Angeles, CA | 252021 | 0900AM   | 282021  | 1000AM    |   BMW          |

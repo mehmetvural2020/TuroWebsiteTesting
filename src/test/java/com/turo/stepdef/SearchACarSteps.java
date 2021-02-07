@@ -21,7 +21,7 @@ public class SearchACarSteps {
     public void userIsInLandingPageToSearch() {
         MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
 
-        MyDriver.get().manage().deleteAllCookies();
+//        MyDriver.get().manage().deleteAllCookies();
 //        MyDriver.get().navigate().refresh();
         waitSomeTime(5L);
         String expected = "Turo | The world's largest car sharing marketplace";
