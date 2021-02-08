@@ -38,8 +38,8 @@ public class SearchACarSteps {
     }
 
     @Then("User select {string} and {string} under From")
-    public void userSelectAndUnderFrom(String date, String time) {
-        searchACar.startDateAndTime(date, time);
+    public void userSelectAndUnderFrom(String dateFrom, String dateUntil) {
+        searchACar.startDateAndTime(dateFrom, dateUntil);
     }
 
     @Then("User select {string} and {string} under Until")

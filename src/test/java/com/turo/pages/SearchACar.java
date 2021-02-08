@@ -63,7 +63,7 @@ public class SearchACar extends Base {
         logger.info("{} is entered.", location);
     }
 
-    public void startDateAndTime(String date, String time) {
+    public void startDateAndTime(String dateFrom, String dateUntil) {
         //Clicking the calender element to open the calender.
         startDate.click();
         waitSomeTime(3L);
@@ -74,45 +74,46 @@ public class SearchACar extends Base {
             nextMonthClick.click();
             waitSomeTime(3L);
         }
+
+       // SOLUTION 1 : Select date UNTIL - FROM and click
+
         //Grab common attribute and put it into list and iterate
         //using List to retrieve the class contains day in it.
-//        List<WebElement> dates = driver.findElements(By.className("day"));
-//        List<WebElement> dates = daysTable1.findElements(By.tagName("div"));
-        List<WebElement> dates1 = daysTable1.findElements(By.xpath("//td[@class='CalendarDay CalendarDay_1 CalendarDay__default CalendarDay__default_2']"));
-        dates1.addAll(daysTable1.findElements(By.xpath("//td[@class=\"CalendarDay CalendarDay_1 CalendarDay__default CalendarDay__default_2 CalendarDay__firstDayOfWeek CalendarDay__firstDayOfWeek_3\"]")));
-//        for(int i = 0; i< 15; i++ ) {
-//            System.out.println("Weekend days :" + daysTable1.findElements(By.xpath("//td[@class=\"CalendarDay CalendarDay_1 CalendarDay__default CalendarDay__default_2 CalendarDay__firstDayOfWeek CalendarDay__firstDayOfWeek_3\"]")).get(i).getText());
-//        }
 
-//        for (WebElement day:dates1) {
-//            System.out.println(day.getText());
-//            if(day.getText().equals(date)) {
-//                day.click();
-//                break;
-//            }
-//        }
+        List<WebElement> dates2 = daysTable1.findElements(By.tagName("td"));
 
-        //counting the number of days inside the day class.
-        int count = daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).size();
-
-// iterating the days to find desired day which is equal to 23
-        for (int i = 0; i < count; i++) {
-            //We are getting the each day
-//            String text = driver.findElements(By.className("day")).get(i).getText();
-            String text = daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).get(i).getText();
-
-            //comparing the day number with desired one. when it match the 23,
-            // it will execute and will break the loop.
-            if (text.equals(date)) {
-                daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).get(i).click();
-                logger.info("Start {} and {} are selected.",date, time);
-            }
-            if (text.equals(time)) {
-                daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).get(i).click();
-                logger.info("Start {} and {} are selected.",date, time);
+        for (WebElement day:dates2) {
+            System.out.println(day.getText());
+            if(day.getText().equals(dateFrom))
+                day.click();
+            if(day.getText().equals(dateUntil)) {
+                day.click();
                 break;
             }
         }
+            // SOLUTION 2 : Select date UNTIL - FROM and click
+//        //counting the number of days inside the day class.
+//        int count = daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).size();
+//
+//        // iterating the days to find desired day which is equal to 23
+//        for (int i = 0; i < count; i++) {
+//            //We are getting the each day
+//            String text = daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).get(i).getText();
+//
+//            //comparing the day number with desired one. when it match the 23,
+//            // it will execute and will break the loop.
+//            //Select date FROM and click.
+//            if (text.equals(dateFrom)) {
+//                daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).get(i).click();
+//                logger.info("Start date {} is selected.",dateFrom);
+//            }
+//            //Select date UNTIL and click.
+//            if (text.equals(dateUntil)) {
+//                daysTable1.findElements(By.xpath("//div[@class='CalendarDay_content CalendarDay_content__hover_as_highlight_color']")).get(i).click();
+//                logger.info("End date {} is selected.", dateUntil);
+//                break;
+//            }
+//        }
     }
 
     public void endDateAndTime(String date, String time) {

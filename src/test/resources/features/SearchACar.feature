@@ -3,8 +3,8 @@ Feature: Verifying the Search
   Scenario Outline: User fill out the search option
     Given user is on landing page to search
     Then User enter "<location>" in Where text box
-    Then User select "<dateFrom>" and "<timeFrom>" under From
-    Then User select "<dateUntil>" and "<timeUntil>" under Until
+    Then User select "<dateFrom>" and "<dateUntil>" under From
+    Then User select "<timeFrom>" and "<timeUntil>" under Until
     Then User clicks Search button
     And User clicks on Sort By menu and select an option then clicks on apply
     And User clicks on Price menu and adjust the price range then clicks on view results
@@ -26,5 +26,5 @@ Feature: Verifying the Search
 
 
     Examples:
-      | location        | dateFrom | timeFrom | dateUntil | timeUntil |  Vehicle_makes |
-      | Los Angeles, CA | 20       | 27       | 25  | 1000AM    |   BMW          |
+      | location        | dateFrom | dateUntil | timeFrom | timeUntil |  Vehicle_makes |
+      | Los Angeles, CA | 23       | 25       | 25  | 1000AM    |   BMW          |
