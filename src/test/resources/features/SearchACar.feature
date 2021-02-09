@@ -27,4 +27,4 @@ Feature: Verifying the Search
 
     Examples:
       | location        | dateFrom | dateUntil | timeFrom | timeUntil |  Vehicle_makes |
-      | Los Angeles, CA | 23       | 25       | 25  | 1000AM    |   BMW          |
+      | Los Angeles, CA | 23       | 25        | 1000AM   | 1000AM    |   BMW          |

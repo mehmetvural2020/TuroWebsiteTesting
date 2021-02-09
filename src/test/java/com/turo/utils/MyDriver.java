@@ -23,7 +23,7 @@ import java.util.Map;
 public class MyDriver {
     private static ThreadLocal<WebDriver> DriverPool = new ThreadLocal<>();
 
-    private MyDriver() {
+    public MyDriver() {
     }
 
     static Logger logger = LoggerFactory.getLogger(MyDriver.class);

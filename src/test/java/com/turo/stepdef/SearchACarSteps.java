@@ -54,10 +54,12 @@ public class SearchACarSteps {
 
     @And("User clicks on Sort By menu and select an option then clicks on apply")
     public void userClicksOnSortByMenuAndSelectAnOptionThenClicksOnApply() {
+        searchACar.clickOnSortBy();
     }
 
     @And("User clicks on Price menu and adjust the price range then clicks on view results")
     public void userClicksOnPriceMenuAndAdjustThePriceRangeThenClicksOnViewResults() {
+        searchACar.clickOnPrice();
     }
 
     @And("User clicks on Book instantly menu and clicks on view results")
