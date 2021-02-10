@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -108,6 +109,24 @@ public class SearchACar extends Base {
 
     @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
     public WebElement applyButton1;
+
+    @FindBy(xpath = "//div[@class='searchFilter desktopMoreFilters']")
+    public WebElement moreFiltersButton;
+
+    @FindBy(css = "label[for='allStarHost'] span[class='styledCheckbox-label']")
+    public WebElement allStarHost;
+
+    @FindBy(xpath = "//div[@class='searchFilterBar']//div[7]//div[2]//div[1]//span[1]")
+    public WebElement vehicleTypesButton;
+
+    @FindBy(xpath = "//span[@class='imageMultiSelectOption-icon typeIcon typeIcon--car']")
+    public WebElement car;
+
+    @FindBy(xpath = "//select[@id='makes']")
+    public WebElement vehicleMakes;
+
+    @FindBy(xpath = "//option[@value='Lexus']")
+    public WebElement lexus;
 
 
 
@@ -237,8 +256,23 @@ public class SearchACar extends Base {
         distance200miles.click();
         waitSomeTime(2L);
         applyButton1.click();
+    }
 
+    public void moreFilterOptions() {
+        moreFiltersButton.click();
+        allStarHost.click();
+    }
 
+    public void selectCarAndVehicleMakes(String vehicle_makes) {
+        vehicleTypesButton.click();
+        car.click();
+
+//        vehicleMakes.findElement();
+        waitSomeTime(2L);
+        Select select = new Select(vehicleMakes);
+        scrollDown(vehicleMakes);
+        waitSomeTime(2L);
+        select.selectByVisibleText(vehicle_makes);
     }
 }
 

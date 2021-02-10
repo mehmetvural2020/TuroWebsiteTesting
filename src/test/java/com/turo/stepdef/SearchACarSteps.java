@@ -72,21 +72,27 @@ public class SearchACarSteps {
         searchACar.adjustDeliveryOption();
     }
 
-    @And("User clicks on More filters menu and select All-Star Host")
-    public void userClicksOnMoreFiltersMenuAndSelectAllStarHost() {
+    @And("User clicks on Distance included menu and select the distance then clicks on  apply button")
+    public void userClicksOnDistanceIncludedMenuAndSelectTheDistanceThenClicksOnApplyButton() {
         searchACar.distanceIncludedOption();
     }
 
-    @And("select {string} and clicks on upper arrow")
-    public void selectAndClicksOnUpperArrow(String value) {
+    @And("User clicks on More filters menu and select All-Star Host")
+    public void userClicksOnMoreFiltersMenuAndSelectAllStarHost() {
+        searchACar.moreFilterOptions();
     }
 
-    @And("adjust the Vehicle years range and select the Transmission")
-    public void adjustTheVehicleYearsRangeAndSelectTheTransmission() {
+    @And("select CAR Vehicle types and select {string} then clicks on upper arrow")
+    public void selectCARVehicleTypesAndSelectThenClicksOnUpperArrow(String vehicle_makes) {
+        searchACar.selectCarAndVehicleMakes(vehicle_makes);
     }
 
-    @Then("User clicks on view results")
-    public void userClicksOnViewResults() {
+    @And("User adjust the Vehicle years range")
+    public void userAdjustTheVehicleYearsRange() {
+    }
+
+    @Then("User select the Transmission clicks on view results")
+    public void userSelectTheTransmissionClicksOnViewResults() {
     }
 
     @Then("User selects the first car in the list")
@@ -104,5 +110,7 @@ public class SearchACarSteps {
     @And("User clicks on Continue button")
     public void userClicksOnContinueButton() {
     }
+
+
 
 }

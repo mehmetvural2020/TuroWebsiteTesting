@@ -10,11 +10,12 @@ Feature: Verifying the Search
     And User clicks on Price menu and adjust the price range then clicks on view results
     And User clicks on Book instantly menu and clicks on view results
     And User clicks on Delivery menu and adjust the distance range then clicks on view results
+    And User clicks on Distance included menu and select the distance then clicks on  apply button
     And User clicks on More filters menu and select All-Star Host
-#    And select "<Vehicle_types>" and clicks on upper arrow
-    And select "<Vehicle_makes>" and clicks on upper arrow
-    And adjust the Vehicle years range and select the Transmission
-    Then User clicks on view results
+
+    And select CAR Vehicle types and select "<Vehicle_makes>" then clicks on upper arrow
+    And User adjust the Vehicle years range
+    Then User select the Transmission clicks on view results
     Then User selects the first car in the list
     And Verify that Pickup & return location is present
     Then User selects Pickup & return location
@@ -26,5 +27,5 @@ Feature: Verifying the Search
 
 
     Examples:
-      | location        | dateFrom | dateUntil | timeFrom | timeUntil |  Vehicle_makes |
-      | Los Angeles, CA | 23       | 25        | 1000AM   | 1000AM    |   BMW          |
+      | location        | dateFrom | dateUntil | timeFrom | timeUntil |  Vehicle_makes   |
+      | Los Angeles, CA | 23       | 25        | 1000AM   | 1000AM    |   Lexus          |
