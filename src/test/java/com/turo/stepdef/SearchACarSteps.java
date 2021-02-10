@@ -64,10 +64,12 @@ public class SearchACarSteps {
 
     @And("User clicks on Book instantly menu and clicks on view results")
     public void userClicksOnBookInstantlyMenuAndClicksOnViewResults() {
+        searchACar.clickOnBookInstant();
     }
 
     @And("User clicks on Delivery menu and adjust the distance range then clicks on view results")
     public void userClicksOnDeliveryMenuAndAdjustTheDistanceRangeThenClicksOnViewResults() {
+        searchACar.adjustDeliveryOption();
     }
 
     @And("User clicks on More filters menu and select All-Star Host")

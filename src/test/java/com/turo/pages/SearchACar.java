@@ -60,7 +60,6 @@ public class SearchACar extends Base {
     @FindBy(xpath = "//div[@class='searchFilterBar']//div[1]//button[1]")
     public WebElement sortBy;
 
-//    @FindBy(css = "label[for='styledRadioButtonField-sortType-PRICE_LOW'] div[class='styledRadioButton styledRadioButton--purple']")
     @FindBy(css = "label[for='styledRadioButtonField-sortType-PRICE_LOW']")
     public WebElement lowToHigh;
 
@@ -85,6 +84,23 @@ public class SearchACar extends Base {
 
     @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
     public WebElement viewResult;
+
+    @FindBy(xpath = "//div[@class='searchFilterBar']//div[3]//button[1]")
+    public WebElement bookInstantly;
+
+    @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
+    public WebElement viewResult2;
+
+    @FindBy(xpath = "//div[@class='searchFilterBar']//div[4]//button[1]")
+    public WebElement deliveryButton;
+
+    @FindBy(xpath = "//div[@role='slider']")
+    public WebElement deliveryRightSlider;
+
+    @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
+    public WebElement viewResult3;
+
+
 
     public void enterLocation(String location) {
         waitSomeTime(2L);
@@ -168,23 +184,41 @@ public class SearchACar extends Base {
         lowToHigh.click();
         System.out.println(lowToHigh.getText() + " is Selected...");
         applyButton.click();
+        waitSomeTime(2L);
     }
 
 
     public void clickOnPrice() {
+
         price.click();
         Actions move = new Actions(MyDriver.get());
         // We can get coordinate with coordinates extension in google chrome.
         // Left slider move to 50$. x coordinate is moving 68 pixel to right from left.
-        Action actionLeft = (Action) move.dragAndDropBy(leftSlider, 68, 234).build();
+        Action actionLeft = move.dragAndDropBy(leftSlider, 68, 234).build();
         actionLeft.perform();
 
         // Right slider move to 200$. x coordinate is moving -90 pixel   to left from right.
-        Action actionRight =  (Action) move.dragAndDropBy(rightSlider, -90, 234).build();
+        Action actionRight =  move.dragAndDropBy(rightSlider, -90, 234).build();
         actionRight.perform();
 
         viewResult.click();
+        waitSomeTime(2L);
+    }
 
+    public void clickOnBookInstant() {
+        bookInstantly.click();
+        viewResult2.click();
+        waitSomeTime(2L);
+    }
+
+    public void adjustDeliveryOption() {
+        deliveryButton.click();
+        Actions move = new Actions(MyDriver.get());
+
+        Action actionRight =  move.dragAndDropBy(deliveryRightSlider, -105, 234).build();
+        actionRight.perform();
+        waitSomeTime(2L);
+        viewResult3.click();
     }
 }
 
