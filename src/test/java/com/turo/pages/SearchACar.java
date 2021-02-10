@@ -6,6 +6,7 @@ import org.apache.poi.xwpf.usermodel.BodyElementType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -75,15 +76,15 @@ public class SearchACar extends Base {
     @FindBy(xpath = "//div[@class='searchFilterBar']//div[2]//button[1]")
     public WebElement price;
 
-    @FindBy(xpath = "//div[@class='rc-slider-step']")
-    public WebElement slider;
 
-    @FindBy(xpath = "//div[@class='rc-slider-handle rc-slider-handle-1']")
+    @FindBy(css = "div[class='rc-slider-handle rc-slider-handle-1']")
     public WebElement leftSlider;
 
     @FindBy(xpath = "//div[@class='rc-slider-handle rc-slider-handle-2']")
     public WebElement rightSlider;
 
+    @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
+    public WebElement viewResult;
 
     public void enterLocation(String location) {
         waitSomeTime(2L);
@@ -165,18 +166,24 @@ public class SearchACar extends Base {
         waitSomeTime(5L);
         sortBy.click();
         lowToHigh.click();
-        System.out.println(lowToHigh.getText() + "is Selected...");
+        System.out.println(lowToHigh.getText() + " is Selected...");
         applyButton.click();
     }
 
 
     public void clickOnPrice() {
         price.click();
-//        slider.getAttribute().codePointCount(50,150);
-//        leftSlider.sendKeys(Keys.ARROW_RIGHT);
-//        rightSlider.sendKeys(Keys.ARROW_LEFT);
         Actions move = new Actions(MyDriver.get());
-        move.moveToElement(slider).clickAndHold().moveByOffset(50, 150).release().perform();
+        // We can get coordinate with coordinates extension in google chrome.
+        // Left slider move to 50$. x coordinate is moving 68 pixel to right from left.
+        Action actionLeft = (Action) move.dragAndDropBy(leftSlider, 68, 234).build();
+        actionLeft.perform();
+
+        // Right slider move to 200$. x coordinate is moving -90 pixel   to left from right.
+        Action actionRight =  (Action) move.dragAndDropBy(rightSlider, -90, 234).build();
+        actionRight.perform();
+
+        viewResult.click();
 
     }
 }
