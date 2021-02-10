@@ -74,6 +74,7 @@ public class SearchACarSteps {
 
     @And("User clicks on More filters menu and select All-Star Host")
     public void userClicksOnMoreFiltersMenuAndSelectAllStarHost() {
+        searchACar.distanceIncludedOption();
     }
 
     @And("select {string} and clicks on upper arrow")

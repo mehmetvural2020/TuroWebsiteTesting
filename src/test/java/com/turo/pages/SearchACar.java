@@ -100,6 +100,16 @@ public class SearchACar extends Base {
     @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
     public WebElement viewResult3;
 
+    @FindBy(xpath = "//span[contains(text(), 'Distance included')]")
+    public WebElement distanceButton;
+
+    @FindBy(css = "label[for='styledRadioButtonField-minimumMileage-200']")
+    public WebElement distance200miles;
+
+    @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
+    public WebElement applyButton1;
+
+
 
 
     public void enterLocation(String location) {
@@ -219,6 +229,16 @@ public class SearchACar extends Base {
         actionRight.perform();
         waitSomeTime(2L);
         viewResult3.click();
+    }
+
+    public void distanceIncludedOption() {
+        waitSomeTime(2L);
+        distanceButton.click();
+        distance200miles.click();
+        waitSomeTime(2L);
+        applyButton1.click();
+
+
     }
 }
 
