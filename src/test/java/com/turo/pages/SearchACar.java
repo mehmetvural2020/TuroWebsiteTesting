@@ -3,9 +3,7 @@ package com.turo.pages;
 import com.turo.stepdef.MainPageSteps;
 import com.turo.utils.MyDriver;
 import org.apache.poi.xwpf.usermodel.BodyElementType;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.text.AttributeSet;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.openqa.selenium.By.xpath;
@@ -128,6 +128,24 @@ public class SearchACar extends Base {
     @FindBy(xpath = "//option[@value='Lexus']")
     public WebElement lexus;
 
+    @FindBy(xpath = "//div[contains(text(), 'Number of seats')]")
+    public WebElement yearSlider;
+
+    @FindBy(xpath = "//span[@class='rangeSliderField-label']")
+    public WebElement yearRange;
+
+    @FindBy(xpath = "//div[@aria-valuemin='1950' and @class='rc-slider-handle rc-slider-handle-1']")
+    public WebElement leftYearSlider;
+
+    @FindBy(xpath = "//div[@class='rc-slider-handle rc-slider-handle-2']")
+    public WebElement rightYearSlider;
+
+    @FindBy(xpath = "//select[@id='automaticTransmission']")
+    public WebElement transmission;
+
+    @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
+    public WebElement viewResult4;
+
 
 
 
@@ -227,8 +245,8 @@ public class SearchACar extends Base {
         actionLeft.perform();
 
         // Right slider move to 200$. x coordinate is moving -90 pixel   to left from right.
-        Action actionRight =  move.dragAndDropBy(rightSlider, -90, 234).build();
-        actionRight.perform();
+        Action actionRight = (Action) move.dragAndDropBy(rightSlider, -90, 234).build();
+        ((Action) actionRight).perform();
 
         viewResult.click();
         waitSomeTime(2L);
@@ -267,12 +285,77 @@ public class SearchACar extends Base {
         vehicleTypesButton.click();
         car.click();
 
-//        vehicleMakes.findElement();
         waitSomeTime(2L);
         Select select = new Select(vehicleMakes);
-        scrollDown(vehicleMakes);
+        scrollDown(lexus);
         waitSomeTime(2L);
         select.selectByVisibleText(vehicle_makes);
+    }
+
+    public void adjustYears() throws InvocationTargetException, InterruptedException {
+
+
+//        JavascriptExecutor jse = (JavascriptExecutor)MyDriver.get();
+//        jse.executeScript("document.getElementById('elementID').setAttribute('aria-valuenow', '2012')");
+
+//        MyDriver.get().findElement(<locator of previous element>).
+//        sendKeys(Keys.TAB, Keys.chord(Keys.COMMAND, "a"), "This text will replace text in textarea");
+
+//        yearRange.sendKeys(Keys.TAB, Keys.chord(Keys.COMMAND, "2012 - 2020"), "New Text");
+//        aria-valuenow="1950"
+
+//        leftYearSlider.sendKeys(AttributeSet.NameAttribute.equals());
+
+//        WebDriver driver; // Assigned elsewhere
+//        waitSomeTime(2L);
+//        JavascriptExecutor js = (JavascriptExecutor) MyDriver.get();
+//        js.executeScript("document.getElementByClassName('rc-slider-track rc-slider-track-1')setAttribute('aria-valuenow', '2012')");
+
+//        public void exampleUsage(MyDriver.get()) {
+//            setAttribute(username, "attr", "10");
+//            setAttribute(username, "value", "bar");
+//        }
+//
+//        public void setAttribute(WebElement element, String attName, String attValue) {
+//            driver.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
+//                    element, attName, attValue);
+//        }
+//
+
+//        Actions move = new Actions(MyDriver.get());
+//        Action actionLeft1 = (Action) move.dragAndDropBy(leftYearSlider, 10, 234).release().build();
+////        ((Action) actionLeft1).perform();
+//        waitSomeTime(2L);
+//        leftYearSlider.click();
+//        System.out.println("yearSlider.getSize()");
+
+//
+//        Action actionRight =  move.dragAndDropBy(rightYearSlider, -15, 0).build();
+//        actionRight.perform();
+//        waitSomeTime(4L);
+
+        Actions a = new Actions(MyDriver.get());
+        org.openqa.selenium.interactions.Action dragAndDrop =
+
+                a.clickAndHold(leftYearSlider).moveByOffset(50,0).release().build();
+        dragAndDrop.perform();
+        leftYearSlider.click();
+
+        org.openqa.selenium.interactions.Action dragAndDropRight =
+
+                a.clickAndHold(rightYearSlider).moveByOffset(-15,0).release().build();
+        dragAndDropRight.perform();
+        rightYearSlider.click();
+
+    }
+
+    public void selectTransmission() {
+        Select select = new Select(transmission);
+        waitSomeTime(2L);
+        select.selectByVisibleText("Automatic");
+
+        waitSomeTime(2L);
+        viewResult4.click();
     }
 }
 

@@ -10,6 +10,8 @@ import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static com.turo.pages.Base.waitSomeTime;
 
 public class SearchACarSteps {
@@ -89,10 +91,16 @@ public class SearchACarSteps {
 
     @And("User adjust the Vehicle years range")
     public void userAdjustTheVehicleYearsRange() {
+        try {
+            searchACar.adjustYears();
+        } catch (InvocationTargetException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Then("User select the Transmission clicks on view results")
     public void userSelectTheTransmissionClicksOnViewResults() {
+        searchACar.selectTransmission();
     }
 
     @Then("User selects the first car in the list")
