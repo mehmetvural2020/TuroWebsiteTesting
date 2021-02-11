@@ -91,11 +91,8 @@ public class SearchACarSteps {
 
     @And("User adjust the Vehicle years range")
     public void userAdjustTheVehicleYearsRange() {
-        try {
-            searchACar.adjustYears();
-        } catch (InvocationTargetException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        searchACar.adjustYears();
+
     }
 
     @Then("User select the Transmission clicks on view results")
@@ -118,7 +115,5 @@ public class SearchACarSteps {
     @And("User clicks on Continue button")
     public void userClicksOnContinueButton() {
     }
-
-
 
 }

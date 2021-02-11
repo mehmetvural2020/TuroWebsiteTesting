@@ -5,6 +5,8 @@ import com.turo.utils.MyDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
@@ -19,6 +21,15 @@ public class Hooks {
     public void setup() {
         logger.info("##### SETUP STARTED (HOOK) ######");
         MyDriver.get().manage().window().maximize();
+//        MyDriver.get().manage().window().setSize(new Dimension(1350,768));
+
+//        JavascriptExecutor execute_script = (JavascriptExecutor)MyDriver.get();
+//        execute_script.executeScript("document.body.style.zoom='0.8'");   //80%
+
+//        JavascriptExecutor executor = (JavascriptExecutor)MyDriver.get();
+//        executor.executeScript("document.body.style.zoom = '1.5'");       //150%
+
+//        MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
         MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
         MyDriver.get().manage().deleteAllCookies();
         MyDriver.get().navigate().refresh();

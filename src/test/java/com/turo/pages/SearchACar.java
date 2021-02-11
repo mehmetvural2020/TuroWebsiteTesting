@@ -128,13 +128,17 @@ public class SearchACar extends Base {
     @FindBy(xpath = "//option[@value='Lexus']")
     public WebElement lexus;
 
+    @FindBy(xpath = "//span[@class='rangeSliderField-label']")
+    public WebElement yearText;
+
     @FindBy(xpath = "//div[contains(text(), 'Number of seats')]")
     public WebElement yearSlider;
 
     @FindBy(xpath = "//span[@class='rangeSliderField-label']")
     public WebElement yearRange;
 
-    @FindBy(xpath = "//div[@aria-valuemin='1950' and @class='rc-slider-handle rc-slider-handle-1']")
+//    @FindBy(xpath = "//div[@aria-valuemin='1950' and @class='rc-slider-handle rc-slider-handle-1']")
+    @FindBy(xpath = "//div[@class='rc-slider-handle rc-slider-handle-1']")
     public WebElement leftYearSlider;
 
     @FindBy(xpath = "//div[@class='rc-slider-handle rc-slider-handle-2']")
@@ -292,61 +296,16 @@ public class SearchACar extends Base {
         select.selectByVisibleText(vehicle_makes);
     }
 
-    public void adjustYears() throws InvocationTargetException, InterruptedException {
+    public void adjustYears() {
+        scrollDown(yearText);
 
+        Actions move = new Actions(MyDriver.get());
 
-//        JavascriptExecutor jse = (JavascriptExecutor)MyDriver.get();
-//        jse.executeScript("document.getElementById('elementID').setAttribute('aria-valuenow', '2012')");
+        Action actionLeft1 = (Action) move.dragAndDropBy(leftYearSlider, 430, 0).release().build();
+        ((Action) actionLeft1).perform();
 
-//        MyDriver.get().findElement(<locator of previous element>).
-//        sendKeys(Keys.TAB, Keys.chord(Keys.COMMAND, "a"), "This text will replace text in textarea");
-
-//        yearRange.sendKeys(Keys.TAB, Keys.chord(Keys.COMMAND, "2012 - 2020"), "New Text");
-//        aria-valuenow="1950"
-
-//        leftYearSlider.sendKeys(AttributeSet.NameAttribute.equals());
-
-//        WebDriver driver; // Assigned elsewhere
-//        waitSomeTime(2L);
-//        JavascriptExecutor js = (JavascriptExecutor) MyDriver.get();
-//        js.executeScript("document.getElementByClassName('rc-slider-track rc-slider-track-1')setAttribute('aria-valuenow', '2012')");
-
-//        public void exampleUsage(MyDriver.get()) {
-//            setAttribute(username, "attr", "10");
-//            setAttribute(username, "value", "bar");
-//        }
-//
-//        public void setAttribute(WebElement element, String attName, String attValue) {
-//            driver.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",
-//                    element, attName, attValue);
-//        }
-//
-
-//        Actions move = new Actions(MyDriver.get());
-//        Action actionLeft1 = (Action) move.dragAndDropBy(leftYearSlider, 10, 234).release().build();
-////        ((Action) actionLeft1).perform();
-//        waitSomeTime(2L);
-//        leftYearSlider.click();
-//        System.out.println("yearSlider.getSize()");
-
-//
-//        Action actionRight =  move.dragAndDropBy(rightYearSlider, -15, 0).build();
-//        actionRight.perform();
-//        waitSomeTime(4L);
-
-        Actions a = new Actions(MyDriver.get());
-        org.openqa.selenium.interactions.Action dragAndDrop =
-
-                a.clickAndHold(leftYearSlider).moveByOffset(50,0).release().build();
-        dragAndDrop.perform();
-        leftYearSlider.click();
-
-        org.openqa.selenium.interactions.Action dragAndDropRight =
-
-                a.clickAndHold(rightYearSlider).moveByOffset(-15,0).release().build();
-        dragAndDropRight.perform();
-        rightYearSlider.click();
-
+        Action actionLeft = (Action) move.dragAndDropBy(rightYearSlider, -15, 0).release().build();
+        ((Action) actionLeft).perform();
     }
 
     public void selectTransmission() {
