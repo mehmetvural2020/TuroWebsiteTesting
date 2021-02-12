@@ -3,6 +3,7 @@ package com.turo.pages;
 import com.turo.stepdef.MainPageSteps;
 import com.turo.utils.MyDriver;
 import org.apache.poi.xwpf.usermodel.BodyElementType;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -150,6 +151,14 @@ public class SearchACar extends Base {
     @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
     public WebElement viewResult4;
 
+    @FindBy(xpath = "//div[@style='height: 371px; left: 0px; position: absolute; top: 0px; width: 403.5px;']")
+    public WebElement firstCar;
+
+    @FindBy(xpath = "//div[contains(text(),'Pickup & return location')]")
+    public WebElement pickupLocation;
+
+    @FindBy(xpath = "//button[@type='submit']")
+    public WebElement continueButton;
 
 
 
@@ -315,6 +324,21 @@ public class SearchACar extends Base {
 
         waitSomeTime(2L);
         viewResult4.click();
+    }
+
+    public void selectTheFirstCar() {
+        waitSomeTime(5L);
+        firstCar.click();
+    }
+
+    public void verifyPickupLocation() {
+        Assert.assertEquals("Pickup & return location", pickupLocation);
+        logger.info("{} is present.", pickupLocation);
+    }
+
+
+    public void clickOnContinue() {
+        continueButton.click();
     }
 }
 

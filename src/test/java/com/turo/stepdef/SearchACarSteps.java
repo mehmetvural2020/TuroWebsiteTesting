@@ -102,10 +102,12 @@ public class SearchACarSteps {
 
     @Then("User selects the first car in the list")
     public void userSelectsTheFirstCarInTheList() {
+        searchACar.selectTheFirstCar();
     }
 
     @And("Verify that Pickup & return location is present")
     public void verifyThatPickupReturnLocationIsPresent() {
+        searchACar.verifyPickupLocation();
     }
 
     @Then("User selects Pickup & return location")
@@ -114,6 +116,7 @@ public class SearchACarSteps {
 
     @And("User clicks on Continue button")
     public void userClicksOnContinueButton() {
+        searchACar.clickOnContinue();
     }
 
 }
