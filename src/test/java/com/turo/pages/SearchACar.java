@@ -166,9 +166,15 @@ public class SearchACar extends Base {
     @FindBy(xpath = "//h1[@class=\"css-tibi9u-StyledText\"]")
     public WebElement selectedCarTitle;
 
-
-    @FindBy(xpath = "//div[contains(text(),'Pickup & return location')]")
+    @FindBy(xpath = "//div[@class='reservationBoxLocation-current reservationBoxLocation-current--instantBook']")
     public WebElement pickupLocation;
+
+    @FindBy(xpath = "//span[@class='reservationBoxLocationOption reservationBoxLocationOption--home is-active']")
+    public WebElement pickup;
+
+    @FindBy(xpath = "//span[@tabindex='0' and @xpath='1']")
+    public WebElement deliveryLocation;
+
 
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement continueButton;
@@ -339,7 +345,7 @@ public class SearchACar extends Base {
         viewResult4.click();
     }
 
-    public void selectTheFirstCar() {
+    public void selectTheFirstCarAndVerify() {
         waitSomeTime(5L);
         JavascriptExecutor js = (JavascriptExecutor) MyDriver.get();
         js.executeScript("arguments[0].setAttribute('target', '')", firstCarLink );
@@ -352,28 +358,15 @@ public class SearchACar extends Base {
         String actual = selectedCarTitle.getText();
         logger.info("Expected is {} and actual is {}.",expected, actual);
         Assert.assertEquals(expected, actual);
-
-//        JavascriptExecutor browser = (JavascriptExecuter) MyDriver.get();
-//        browser.execute_script("arguments[0].setAttribute('target','')", element)
-//        (JavascriptExecuter)MyDriver.get().execute_script("arguments[0].setAttribute('target','')", element)
-
-//        String url = firstCar.getAttribute("href");
-//        System.out.println(url);
     }
 
-    public void verifyPickupLocation() {
-//        waitSomeTime(10L);
-//        String expected = firstCarTitle.getText();
-//        String actual = selectedCarTitle.getText();
-//        logger.info("Expected is {} and actual is {}.",expected, actual);
-//        Assert.assertEquals(expected, actual);
-
-//        Assert.assertEquals("Pickup & return location", pickupLocation);
-//        logger.info("{} is present.", pickupLocation);
+    public void selectPickupLocation() {
+        pickupLocation.click();
+        pickup.click();
     }
-
 
     public void clickOnContinue() {
+        waitSomeTime(5000L);
         continueButton.click();
     }
 }

@@ -18,15 +18,12 @@ Feature: Verifying the Search
     And User clicks on Delivery menu and adjust the distance range then clicks on view results
     And User clicks on Distance included menu and select the distance then clicks on  apply button
 
-    Then User selects the first car in the list
+    Then User selects the first car in the list and verify the selected car title is present
 
-    And Verify that Pickup & return location is present
-    Then User selects Pickup & return location
+    Then User selects Pickup location
+
     And User clicks on Continue button
-#    0 2 10 2021 2
-#    0 02 10 2021 2
-#  2021 0 10 20212 09
-#  2021 0 25 2021 2
+
 
 
     Examples:

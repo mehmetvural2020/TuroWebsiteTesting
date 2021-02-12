@@ -100,23 +100,18 @@ public class SearchACarSteps {
         searchACar.selectTransmission();
     }
 
-    @Then("User selects the first car in the list")
-    public void userSelectsTheFirstCarInTheList() {
-        searchACar.selectTheFirstCar();
+    @Then("User selects the first car in the list and verify the selected car title is present")
+    public void userSelectsTheFirstCarInTheListAndVerifyTheSelectedCarTitleIsPresent() {
+        searchACar.selectTheFirstCarAndVerify();
     }
 
-    @And("Verify that Pickup & return location is present")
-    public void verifyThatPickupReturnLocationIsPresent() {
-        searchACar.verifyPickupLocation();
-    }
-
-    @Then("User selects Pickup & return location")
+    @Then("User selects Pickup location")
     public void userSelectsPickupReturnLocation() {
+        searchACar.selectPickupLocation();
     }
 
     @And("User clicks on Continue button")
     public void userClicksOnContinueButton() {
         searchACar.clickOnContinue();
     }
-
 }
