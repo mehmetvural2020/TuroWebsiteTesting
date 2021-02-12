@@ -160,8 +160,12 @@ public class SearchACar extends Base {
     @FindBy(xpath = "//*[@class='ey4g3ta0 css-1wmlurb-StyledText-VehicleLabelText']")
     public WebElement firstCarTitle;
 
-    @FindBy(xpath = "//div[@class='vehicleLabelDiv-makeModelYearContainer']/p")
+    @FindBy(xpath = "//p[@class=\"css-o0jrll-StyledText\"]")
+    public WebElement theCar;
+
+    @FindBy(xpath = "//h1[@class=\"css-tibi9u-StyledText\"]")
     public WebElement selectedCarTitle;
+
 
     @FindBy(xpath = "//div[contains(text(),'Pickup & return location')]")
     public WebElement pickupLocation;
@@ -339,7 +343,15 @@ public class SearchACar extends Base {
         waitSomeTime(5L);
         JavascriptExecutor js = (JavascriptExecutor) MyDriver.get();
         js.executeScript("arguments[0].setAttribute('target', '')", firstCarLink );
+        String expected = firstCarTitle.getText();
         firstCarLink.click();
+
+        waitSomeTime(10L);
+        scrollDown(theCar);
+        waitSomeTime(1000L);
+        String actual = selectedCarTitle.getText();
+        logger.info("Expected is {} and actual is {}.",expected, actual);
+        Assert.assertEquals(expected, actual);
 
 //        JavascriptExecutor browser = (JavascriptExecuter) MyDriver.get();
 //        browser.execute_script("arguments[0].setAttribute('target','')", element)
@@ -350,11 +362,12 @@ public class SearchACar extends Base {
     }
 
     public void verifyPickupLocation() {
-        waitSomeTime(5L);
-        String expected = firstCarTitle.getText();
-        String actual = selectedCarTitle.getText();
+//        waitSomeTime(10L);
+//        String expected = firstCarTitle.getText();
+//        String actual = selectedCarTitle.getText();
+//        logger.info("Expected is {} and actual is {}.",expected, actual);
+//        Assert.assertEquals(expected, actual);
 
-        Assert.assertEquals(expected, actual);
 //        Assert.assertEquals("Pickup & return location", pickupLocation);
 //        logger.info("{} is present.", pickupLocation);
     }
