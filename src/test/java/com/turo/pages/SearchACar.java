@@ -151,8 +151,17 @@ public class SearchACar extends Base {
     @FindBy(css = "button[class='buttonSchumi buttonSchumi--medium buttonSchumi--purple searchFilterPopupDesktop-submitButton']")
     public WebElement viewResult4;
 
-    @FindBy(xpath = "//div[@style='height: 371px; left: 0px; position: absolute; top: 0px; width: 403.5px;']")
+    @FindBy(xpath = "//div[@class='ReactVirtualized__Grid__innerScrollContainer']/div[1]")
     public WebElement firstCar;
+
+    @FindBy(xpath = "//div[@class='ReactVirtualized__Grid__innerScrollContainer']/div[1]/div/div/a")
+    public WebElement firstCarLink;
+
+    @FindBy(xpath = "//*[@class='ey4g3ta0 css-1wmlurb-StyledText-VehicleLabelText']")
+    public WebElement firstCarTitle;
+
+    @FindBy(xpath = "//div[@class='vehicleLabelDiv-makeModelYearContainer']/p")
+    public WebElement selectedCarTitle;
 
     @FindBy(xpath = "//div[contains(text(),'Pickup & return location')]")
     public WebElement pickupLocation;
@@ -328,12 +337,26 @@ public class SearchACar extends Base {
 
     public void selectTheFirstCar() {
         waitSomeTime(5L);
-        firstCar.click();
+        JavascriptExecutor js = (JavascriptExecutor) MyDriver.get();
+        js.executeScript("arguments[0].setAttribute('target', '')", firstCarLink );
+        firstCarLink.click();
+
+//        JavascriptExecutor browser = (JavascriptExecuter) MyDriver.get();
+//        browser.execute_script("arguments[0].setAttribute('target','')", element)
+//        (JavascriptExecuter)MyDriver.get().execute_script("arguments[0].setAttribute('target','')", element)
+
+//        String url = firstCar.getAttribute("href");
+//        System.out.println(url);
     }
 
     public void verifyPickupLocation() {
-        Assert.assertEquals("Pickup & return location", pickupLocation);
-        logger.info("{} is present.", pickupLocation);
+        waitSomeTime(5L);
+        String expected = firstCarTitle.getText();
+        String actual = selectedCarTitle.getText();
+
+        Assert.assertEquals(expected, actual);
+//        Assert.assertEquals("Pickup & return location", pickupLocation);
+//        logger.info("{} is present.", pickupLocation);
     }
 
 
