@@ -3,15 +3,11 @@ package com.turo.stepdef;
 import com.turo.pages.SearchACar;
 import com.turo.utils.ConfigurationReader;
 import com.turo.utils.MyDriver;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.lang.reflect.InvocationTargetException;
-
 import static com.turo.pages.Base.waitSomeTime;
 
 public class SearchACarSteps {
@@ -21,7 +17,7 @@ public class SearchACarSteps {
 
     @Given("user is on landing page to search")
     public void userIsInLandingPageToSearch() {
-        MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
+//        MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
 
 //        MyDriver.get().manage().deleteAllCookies();
 //        MyDriver.get().navigate().refresh();
@@ -54,64 +50,11 @@ public class SearchACarSteps {
         searchACar.clickSearchButton();
     }
 
-    @And("User clicks on Sort By menu and select an option then clicks on apply")
-    public void userClicksOnSortByMenuAndSelectAnOptionThenClicksOnApply() {
-        searchACar.clickOnSortBy();
-    }
 
-    @And("User clicks on Price menu and adjust the price range then clicks on view results")
-    public void userClicksOnPriceMenuAndAdjustThePriceRangeThenClicksOnViewResults() {
-        searchACar.clickOnPrice();
-    }
 
-    @And("User clicks on Book instantly menu and clicks on view results")
-    public void userClicksOnBookInstantlyMenuAndClicksOnViewResults() {
-        searchACar.clickOnBookInstant();
-    }
 
-    @And("User clicks on Delivery menu and adjust the distance range then clicks on view results")
-    public void userClicksOnDeliveryMenuAndAdjustTheDistanceRangeThenClicksOnViewResults() {
-        searchACar.adjustDeliveryOption();
-    }
 
-    @And("User clicks on Distance included menu and select the distance then clicks on  apply button")
-    public void userClicksOnDistanceIncludedMenuAndSelectTheDistanceThenClicksOnApplyButton() {
-        searchACar.distanceIncludedOption();
-    }
 
-    @And("User clicks on More filters menu and select All-Star Host")
-    public void userClicksOnMoreFiltersMenuAndSelectAllStarHost() {
-        searchACar.moreFilterOptions();
-    }
 
-    @And("select CAR Vehicle types and select {string} then clicks on upper arrow")
-    public void selectCARVehicleTypesAndSelectThenClicksOnUpperArrow(String vehicle_makes) {
-        searchACar.selectCarAndVehicleMakes(vehicle_makes);
-    }
 
-    @And("User adjust the Vehicle years range")
-    public void userAdjustTheVehicleYearsRange() {
-        searchACar.adjustYears();
-
-    }
-
-    @Then("User select the Transmission clicks on view results")
-    public void userSelectTheTransmissionClicksOnViewResults() {
-        searchACar.selectTransmission();
-    }
-
-    @Then("User selects the first car in the list and verify the selected car title is present")
-    public void userSelectsTheFirstCarInTheListAndVerifyTheSelectedCarTitleIsPresent() {
-        searchACar.selectTheFirstCarAndVerify();
-    }
-
-    @Then("User selects Pickup location")
-    public void userSelectsPickupReturnLocation() {
-        searchACar.selectPickupLocation();
-    }
-
-    @And("User clicks on Continue button")
-    public void userClicksOnContinueButton() {
-        searchACar.clickOnContinue();
-    }
 }
