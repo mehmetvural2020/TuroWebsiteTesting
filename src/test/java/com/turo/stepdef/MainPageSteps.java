@@ -31,8 +31,9 @@ public class MainPageSteps {
     }
 
     @Then("Verify that Turo logo is present")
-    public void verifyThatTuroLogoIsPresent() {
-        mainPage.verifyLogo();
+    public void verifyThatTuroLogoIsPresent()  {
+        mainPage.logo.isDisplayed();
+        logger.info("Turo logo is displayed");
     }
 
     @Then("Verify that {string} is present")

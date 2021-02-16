@@ -68,8 +68,6 @@
             <version>5.7.0</version>
         </dependency>
 
-
-
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports-cucumber4-adapter</artifactId>
@@ -104,7 +102,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
-                    <!--threadCount ile feature file numbers 1,2,3,4 etc. -->
+                    <!-- We can run feature files  1,2,3,4 etc. with threadCount -->
                     <parallel>all</parallel>
                     <threadCount>3</threadCount>
                     <forkMode>perthread</forkMode>

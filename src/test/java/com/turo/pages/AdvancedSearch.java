@@ -14,7 +14,6 @@ import java.nio.file.Watchable;
 
 public class AdvancedSearch extends Base{
     Logger logger = LoggerFactory.getLogger(AdvancedSearch.class);
-    MyDriver myDriver = new MyDriver();
 
     @FindBy(xpath = "//div[@class='searchFilter desktopMoreFilters']")
     public WebElement moreFiltersButton;
@@ -119,6 +118,7 @@ public class AdvancedSearch extends Base{
 
         Actions move = new Actions(MyDriver.get());
 
+//        Action actionLeft1 = (Action) move.moveToElement(rightSlider, 430, 0) dragAndDropBy(leftYearSlider, 430, 0).release().build();
         Action actionLeft1 = (Action) move.dragAndDropBy(leftYearSlider, 430, 0).release().build();
         ((Action) actionLeft1).perform();
 

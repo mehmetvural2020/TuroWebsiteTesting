@@ -24,10 +24,10 @@ public class Hooks {
 //        MyDriver.get().manage().window().setSize(new Dimension(1350,768));
 
 //        JavascriptExecutor execute_script = (JavascriptExecutor)MyDriver.get();
-//        execute_script.executeScript("document.body.style.zoom='0.8'");   //80%
+//        execute_script.executeScript("document.body.style.zoom='0.8'");   0.8-->//80%
 
 //        JavascriptExecutor executor = (JavascriptExecutor)MyDriver.get();
-//        executor.executeScript("document.body.style.zoom = '1.5'");       //150%
+//        executor.executeScript("document.body.style.zoom = '1.5'");    1.5-->//150%
 
 //        MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
         MyDriver.get().get(ConfigurationReader.getProperty("baseUrl"));
@@ -50,6 +50,6 @@ public class Hooks {
         }
         logger.info("###### END OF TESTS #####");
 
-        MyDriver.close();
+        MyDriver.get().close();
     }
 }

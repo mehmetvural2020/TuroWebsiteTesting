@@ -10,8 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SelectTheFirstCar extends Base{
-    Logger logger = LoggerFactory.getLogger(MainPageSteps.class);
-    MyDriver myDriver = new MyDriver();
+    Logger logger = LoggerFactory.getLogger(SelectTheFirstCar.class);
 
     @FindBy(xpath = "//div[@class='ReactVirtualized__Grid__innerScrollContainer']/div[1]/div/div/a")
     public WebElement firstCarLink;

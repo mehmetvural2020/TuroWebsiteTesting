@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import static com.turo.pages.Base.waitSomeTime;
 
 public class SelectTheFirstCarSteps {
-    Logger logger = LoggerFactory.getLogger(AdvancedSearchSteps.class);
+    Logger logger = LoggerFactory.getLogger(SelectTheFirstCarSteps.class);
     SelectTheFirstCar selectTheFirstCar = new SelectTheFirstCar();
     SearchACar searchACar = new SearchACar();
 
